@@ -15,13 +15,29 @@ class ProjetoController extends Controller
     public function index()
     {
         $projetos = Projeto::all();
-        return view('Projeto.indexProjeto', ['projetos' => $projetos]);
+        return view('Projeto.indexProjeto', ['projetos' =>$projetos]);
     }
 
     public function pesquisaProjeto(Request $request)
     {
-        $search = Projeto::where('nomeProjeto', $request->get('nomeProjeto'))->get();
-        return view('Projeto.indexProjeto', ['projetos' => $search]);
+        // if () {
+        //     $projetos = Projeto::all();
+        //     return view('Projeto.indexProjeto', ['projetos' => $projetos]); 
+        // } else {
+        //     $search = Projeto::where('nomeProjeto', $request->get('nomeProjeto'))->get();
+        //     return view('Projeto.indexProjeto', ['projetos' => $search]);
+        // }
+
+        if(!empty($request->nomeProjeto))
+        {
+            $search = Projeto::where('nomeProjeto' , $request->get('nomeProjeto'))->get();
+            return view('Projeto.indexProjeto', ['projetos' => $search]);
+        }
+        elseif(empty($request->nomeProjeto))
+        {
+            $projetos = Projeto::all();
+            return view('Projeto.indexProjeto', ['projetos' => $projetos]);
+        }
     }
 
     public function create()
@@ -41,15 +57,16 @@ class ProjetoController extends Controller
             $projeto->setAttribute('dhCriacao', $date);
             $projeto->setAttribute('xStatus', $data['xStatus']);
             $projeto->save();
-            return redirect('/')->with('toast_success', 'Projeto criado com sucesso!');
+            return redirect('/')->with('success', 'Projeto criado com sucesso!');
         } catch (\Throwable $th) {
-            return redirect('/')->with('toast_error', 'Erro ao criar projeto!');
+            return redirect('/')->with('error', 'Erro ao criar projeto!');
         }
 }
 
-    public function show(string $id)
+    public function showTarefa(string $id)
     {
-        //
+        $tarefas = Tarefa::all();
+        return view('Tarefa.indexTarefa');
     }
 
     public function edit(string $id)
@@ -64,9 +81,9 @@ class ProjetoController extends Controller
             $data = $request->only(['nomeProjeto', 'linkProjeto', 'descricaoProjeto', 'xStatus']);
             $projeto = Projeto::find($id);
             $projeto->update($data);
-            return redirect('/')->with('toast_success', 'Projeto alterado com sucesso!');
+            return redirect('/')->with('success', 'Projeto alterado com sucesso!');
         } catch (\Throwable $th) {
-            return redirect('/')->with('toast_error', 'Erro ao alterar projeto!');
+            return redirect('/')->with('error', 'Erro ao alterar projeto!');
         }
     }
 
