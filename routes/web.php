@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjetoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Rotas do Sistema
+Route::get('/', [ProjetoController::class, 'index'])->name('index.projeto');
+Route::get('/addProjeto', [ProjetoController::class, 'create'])->name('projeto.create');
+Route::post('/addProjeto', [ProjetoController::class, 'store'])->name('projeto.store');
+Route::get('/editProjeto/{id}', [ProjetoController::class, 'edit'])->name('projeto.edit');
+Route::put('/editProjeto/{id}', [ProjetoController::class, 'update'])->name('projeto.update');
+Route::delete('/delete/{id}', [ProjetoController::class, 'destroy'])->name("projeto.destroy");
+
+// Rotas de Pesquisa de Projetos e Tarefas
+Route::get('/pesquisaProjeto', [ProjetoController::class, 'pesquisaProjeto'])->name('projeto.pesquisa');
