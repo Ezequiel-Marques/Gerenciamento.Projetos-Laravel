@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -19,10 +18,17 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script>
         function openDescription(desc) {
-            let modal = document.getElementById('modal');
-            let modalBody = document.getElementById('modal-body');
-            modalBody.innerHTML = desc;
-            modal.showModal();
+            if (!desc) {
+                let modal = document.getElementById('modal');
+                let modalBody = document.getElementById('modal-body');
+                modalBody.innerHTML = 'Esse projeto não possui nenhuma descrição!';
+                modal.showModal();
+            } else {
+                let modal = document.getElementById('modal');
+                let modalBody = document.getElementById('modal-body');
+                modalBody.innerHTML = desc;
+                modal.showModal();
+            }
         }
 
         function closeDescription() {
@@ -44,7 +50,7 @@
         </div>
         <form method="get" action="{{route('projeto.pesquisa')}}">
             <div class="d-flex justify-content-center flex-row flex-column flex-sm-row">
-                <div class="mx-2 flex-fill">
+                <div class="mx-2 w-50">
                     <input class="form-control" name="nomeProjeto" type="text" placeholder="Nome do Projeto">
                 </div>
                 <div class="mx-2">
@@ -70,14 +76,10 @@
                     <tr>
                         <th scope="col">Código</th>
                         <th scope="col">Nome do Projeto</th>
-                        <!-- <th scope="col">Descrição do Projeto</th> -->
                         <th scope="col">Adicionado em</th>
                         <th scope="col">Qtd. Tarefas</th>
                         <th scope="col">Status</th>
                         <th scope="col">Ações</th>
-                        <!-- <th scope="col">Listar Tarefas</th>
-                        <th scope="col">Editar Projeto</th>
-                        <th scope="col">Excluir Projeto</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +88,6 @@
                     <tr>
                         <td>{{$projeto->id}}</td>
                         <td>{{$projeto->nomeProjeto}}</td>
-                        <!-- <td>{{$projeto->descricaoProjeto}}</td> -->
                         <td>{{$projeto->dhCriacao}}</td>
                         <td>{{$projeto->Tarefa->count()}}</td>
                         <td>{{$projeto->xStatus}}</td>

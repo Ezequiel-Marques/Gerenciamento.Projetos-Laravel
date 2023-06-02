@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjetoController;
+use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // Rotas de Projetos
 Route::get('/', [ProjetoController::class, 'index'])->name('index.projeto');
 Route::get('/addProjeto', [ProjetoController::class, 'create'])->name('projeto.create');
@@ -30,6 +27,9 @@ Route::delete('/delete/{id}', [ProjetoController::class, 'destroy'])->name("proj
 Route::get('/tarefas/{id}', [ProjetoController::class, 'showTarefa'])->name('tarefa.show');
 
 //Rotas de Tarefas
+Route::get('tarefas/{idProjeto}/addTarefa/', [TarefaController::class, 'create'])->name('tarefa.create');
+Route::post('tarefas/{idProjeto}/addTarefa/', [TarefaController::class, 'store'])->name('tarefa.store');
 
 // Rotas de Pesquisa de Projetos e Tarefas
 Route::get('/pesquisaProjeto', [ProjetoController::class, 'pesquisaProjeto'])->name('projeto.pesquisa');
+// Route::get('/pesquisaTarefa', TarefaController::class, 'pesquisaTarefa')->name('tarefa.pesquisa');

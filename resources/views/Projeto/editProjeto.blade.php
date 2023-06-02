@@ -24,7 +24,6 @@
             <div class="col-12">
                 <a href="{{route('index.projeto')}}" class='btn btn-secondary btn-sm my-4'>
                     Voltar
-                    <box-icon name='left-arrow-alt'></box-icon>
                 </a>
             </div>
         </div>

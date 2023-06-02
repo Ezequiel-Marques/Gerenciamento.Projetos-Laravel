@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tarefa extends Model
+class Tarefa extends BaseModel
 {
     use HasFactory;
 
     protected $fillable = [
         'idTarefa',
         'idProjeto',
-        'NomeUsuario',
+        'nomeUsuario',
         'Titulo',
         'dhCriacao',
-        'Importancia',
+        'importancia',
         'xStatus',
         'ultimaAlteracao',
-        'DescricaoTarefa'
+        'descricaoTarefa'
     ];
 }

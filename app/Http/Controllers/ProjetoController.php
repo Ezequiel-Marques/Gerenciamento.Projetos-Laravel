@@ -15,7 +15,7 @@ class ProjetoController extends Controller
     public function index()
     {
         $projetos = Projeto::all();
-        return view('Projeto.indexProjeto', ['projetos' =>$projetos]);
+        return view('Projeto.indexProjeto', ['projetos' => $projetos]);
     }
 
     public function pesquisaProjeto(Request $request)
@@ -61,12 +61,14 @@ class ProjetoController extends Controller
         } catch (\Throwable $th) {
             return redirect('/')->with('error', 'Erro ao criar projeto!');
         }
-}
+    }
 
     public function showTarefa(string $id)
     {
-        $tarefas = Tarefa::all();
-        return view('Tarefa.indexTarefa');
+        $projetos = Projeto::find($id);
+        $tarefas = DB::table('Tarefas')->where('idProjeto', '=' , $id)->get();
+        return view('Tarefa.indexTarefa', ['tarefas' => $tarefas, 'projetos' => $projetos]);
+        
     }
 
     public function edit(string $id)
