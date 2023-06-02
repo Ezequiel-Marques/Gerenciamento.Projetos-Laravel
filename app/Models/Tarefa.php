@@ -20,4 +20,8 @@ class Tarefa extends BaseModel
         'ultimaAlteracao',
         'descricaoTarefa'
     ];
+
+    public function Projeto(){
+        return $this->belongsTo(Projeto::class, 'id');
+    }
 }

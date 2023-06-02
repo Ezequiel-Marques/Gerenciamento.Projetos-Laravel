@@ -61,7 +61,7 @@ class ProjetoController extends Controller
         } catch (\Throwable $th) {
             return redirect('/')->with('error', 'Erro ao criar projeto!');
         }
-    }
+}
 
     public function showTarefa(string $id)
     {

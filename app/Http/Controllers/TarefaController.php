@@ -6,6 +6,7 @@ use App\Models\Projeto;
 use App\Models\Tarefa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TarefaController extends Controller
 {
@@ -37,14 +38,16 @@ class TarefaController extends Controller
         }
     }
 
-    public function edit(string $id)
+    public function edit(string $id, string $idTarefa)
     {
-        //
+        // $projeto = Projeto::find($id);
+        $tarefa = DB::table('Tarefas')->where([['idProjeto', '=', $id], ['idTarefa', '=' , $idTarefa]])->first();
+        return view('Tarefa.editTarefa', ['tarefa' => $tarefa]);
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        dd($id);
     }
 
     public function destroy(string $idTarefa)

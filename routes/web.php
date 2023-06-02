@@ -29,6 +29,8 @@ Route::get('/tarefas/{id}', [ProjetoController::class, 'showTarefa'])->name('tar
 //Rotas de Tarefas
 Route::get('tarefas/{idProjeto}/addTarefa/', [TarefaController::class, 'create'])->name('tarefa.create');
 Route::post('tarefas/{idProjeto}/addTarefa/', [TarefaController::class, 'store'])->name('tarefa.store');
+Route::get('tarefas/{idProjeto}/editTarefa/{idTarefa}', [TarefaController::class, 'edit'])->name('tarefa.edit');
+Route::put('tarefas/{idProjeto}/addTarefa/{idTarefa}/', [TarefaController::class, 'update'])->name('tarefa.update');
 
 // Rotas de Pesquisa de Projetos e Tarefas
 Route::get('/pesquisaProjeto', [ProjetoController::class, 'pesquisaProjeto'])->name('projeto.pesquisa');

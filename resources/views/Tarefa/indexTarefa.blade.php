@@ -55,7 +55,7 @@
         </div>
         <form method="get" action="{{route('projeto.pesquisa')}}">
             <div class="d-flex justify-content-center flex-row flex-column flex-sm-row">
-                <div class="mx-2 w-50">
+                <div class="mx-2 flex-fill">
                     <input class="form-control" name="nomeProjeto" type="text" placeholder="Nome da Tarefa">
                 </div>
                 <div class="mx-2">
@@ -104,7 +104,7 @@
                         <td>{{$tarefa->xStatus}}</td>
                         <td class="d-flex">
                             <button onclick="openDescription('{{$tarefa->descricaoTarefa}}')" type="button" class="btn btn-secondary btn-sm m-2 mb-2 mb-sm-0"><box-icon name='info-circle'></box-icon></button>
-                            <a href="{{route('projeto.edit', $projetos->id)}}" type="button" class="btn btn-warning btn-sm m-2 mb-2 mb-sm-0"><box-icon name='edit-alt'></box-icon></a>
+                            <a href="{{route('tarefa.edit', [$tarefa->idProjeto, $tarefa->idTarefa])}}" type="button" class="btn btn-warning btn-sm m-2 mb-2 mb-sm-0"><box-icon name='edit-alt'></box-icon></a>
                             <form method="post" action="">
                                 @csrf
                                 @method('delete')

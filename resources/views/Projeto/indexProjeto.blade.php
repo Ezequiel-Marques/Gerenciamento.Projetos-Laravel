@@ -50,7 +50,7 @@
         </div>
         <form method="get" action="{{route('projeto.pesquisa')}}">
             <div class="d-flex justify-content-center flex-row flex-column flex-sm-row">
-                <div class="mx-2 w-50">
+                <div class="mx-2 flex-fill">
                     <input class="form-control" name="nomeProjeto" type="text" placeholder="Nome do Projeto">
                 </div>
                 <div class="mx-2">
