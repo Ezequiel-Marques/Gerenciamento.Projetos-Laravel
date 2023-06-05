@@ -66,7 +66,7 @@
             <div class="d-flex justify-content-end mb-3">
                 <button class="btn btn-sm btn-close" onclick=closeDescription()></button>
             </div>
-            <h3 class="d-flex justify-content-center mb-5">Descrição:</h3>
+            <h3 class="d-flex justify-content-center mb-5">Descrição do Projeto:</h3>
             <strong><div id="modal-body" class="d-flex justify-content-center"></div></strong>
         </dialog>
 

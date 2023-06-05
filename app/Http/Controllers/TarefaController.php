@@ -16,20 +16,6 @@ class TarefaController extends Controller
         return view('Tarefa.addTarefa', ['projetos' => $projetos]);
     }
 
-    // public function pesquisaTarefa(Request $request){
-    //     dd($request->get('titulo'));
-    //     if(!empty($request->titulo))
-    //     {
-    //         $search = DB::table('Tarefas')->where('titulo' , $request->get('titulo'))->get();
-    //         return view('Tarefa.indexTarefa', ['tarefa' => $search]);
-    //     }
-    //     elseif(empty($request->titulo))
-    //     {
-    //         $tarefas = Tarefa::all();
-    //         return view('Tarefa.indexTarefa', ['tarefas' => $tarefas]);
-    //     }
-    // }
-
     public function store(Request $request, string $idProjeto)
     {
         try {

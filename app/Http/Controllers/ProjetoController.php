@@ -14,20 +14,12 @@ class ProjetoController extends Controller
 {
     public function index()
     {
-        $projetos = Projeto::all();
+        $projetos = Projeto::get();
         return view('Projeto.indexProjeto', ['projetos' => $projetos]);
     }
 
     public function pesquisaProjeto(Request $request)
     {
-        // if () {
-        //     $projetos = Projeto::all();
-        //     return view('Projeto.indexProjeto', ['projetos' => $projetos]); 
-        // } else {
-        //     $search = Projeto::where('nomeProjeto', $request->get('nomeProjeto'))->get();
-        //     return view('Projeto.indexProjeto', ['projetos' => $search]);
-        // }
-
         if(!empty($request->nomeProjeto))
         {
             $search = Projeto::where('nomeProjeto' , $request->get('nomeProjeto'))->get();
@@ -68,7 +60,6 @@ class ProjetoController extends Controller
         $projetos = Projeto::find($id);
         $tarefas = DB::table('Tarefas')->where('idProjeto', '=' , $id)->get();
         return view('Tarefa.indexTarefa', ['tarefas' => $tarefas, 'projetos' => $projetos]);
-        
     }
 
     public function edit(string $id)

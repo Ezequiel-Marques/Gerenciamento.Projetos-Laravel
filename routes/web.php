@@ -35,4 +35,3 @@ Route::delete('tarefas/{idTarefa}', [TarefaController::class, 'destroy'])->name(
 
 // Rotas de Pesquisa de Projetos e Tarefas
 Route::get('/pesquisaProjeto', [ProjetoController::class, 'pesquisaProjeto'])->name('projeto.pesquisa');
-// Route::get('/pesquisaTarefa', [TarefaController::class, 'pesquisaTarefa'])->name('tarefa.pesquisa');
