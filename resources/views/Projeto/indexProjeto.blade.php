@@ -39,14 +39,14 @@
     <style>
         * {
             font-family: Comfortaa;
-        }
+        }   
     </style>
 </head>
 
 <body>
     <main class="container">
         <div class="d-flex justify-content-center">
-            <h1 class='my-4'>Página Inicial - Projetos</h1>
+            <h1 class='my-4'><strong>Página Inicial - Projetos</strong></h1>
         </div>
         <form method="get" action="{{route('projeto.pesquisa')}}">
             <div class="d-flex justify-content-center flex-row flex-column flex-sm-row">
@@ -66,7 +66,7 @@
             <div class="d-flex justify-content-end mb-3">
                 <button class="btn btn-sm btn-close" onclick=closeDescription()></button>
             </div>
-            <h3 class="d-flex justify-content-center mb-5">Descrição do Projeto:</h3>
+            <h3 class="d-flex justify-content-center mb-3"><strong>Descrição do Projeto:</strong></h3>
             <strong><div id="modal-body" class="d-flex justify-content-center"></div></strong>
         </dialog>
 
@@ -74,8 +74,9 @@
             <table class="table mt-4">
                 <thead>
                     <tr>
-                        <th scope="col">Código</th>
+                        <!-- <th scope="col">Código</th> -->
                         <th scope="col">Nome do Projeto</th>
+                        <th scope="col">Link do Projeto</th>
                         <th scope="col">Adicionado em</th>
                         <th scope="col">Qtd. Tarefas</th>
                         <th scope="col">Status</th>
@@ -86,9 +87,10 @@
                     @if(!is_null($projetos))
                     @foreach($projetos as $projeto)
                     <tr>
-                        <td>{{$projeto->id}}</td>
+                        <!-- <td>{{$projeto->id}}</td> -->
                         <td>{{$projeto->nomeProjeto}}</td>
-                        <td>{{$projeto->dhCriacao}}</td>
+                        <td>{{$projeto->linkProjeto}}</td>
+                        <td>{{\Carbon\Carbon::parse($projeto->dhCriacao)->format('d/m/Y H:i:s')}}</td>
                         <td>{{$projeto->Tarefa->count()}}</td>
                         <td>{{$projeto->xStatus}}</td>
                         <td class="d-flex">

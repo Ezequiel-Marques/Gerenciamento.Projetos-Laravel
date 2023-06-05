@@ -71,7 +71,7 @@
             <div class="d-flex justify-content-end mb-3">
                 <button class="btn btn-sm btn-close" onclick=closeDescription()></button>
             </div>
-            <h3 class="d-flex justify-content-center mb-5">Descrição:</h3>
+            <h3 class="d-flex justify-content-center mb-3"><strong>Descrição:</strong></h3>
             <strong>
                 <div id="modal-body" class="d-flex justify-content-center"></div>
             </strong>
@@ -81,7 +81,7 @@
             <table class="table mt-4">
                 <thead>
                     <tr>
-                        <th scope="col">Código Tarefa</th>
+                        <!-- <th scope="col">Código Tarefa</th> -->
                         <th scope="col">Título</th>
                         <th scope="col">Adicionado em</th>
                         <th scope="col">Última alteração</th>
@@ -95,10 +95,10 @@
                     @if(!is_null($tarefas))
                     @foreach($tarefas as $tarefa)
                     <tr>
-                        <td>{{$tarefa->idTarefa}}</td>
+                        <!-- <td>{{$tarefa->idTarefa}}</td> -->
                         <td>{{$tarefa->titulo}}</td>
-                        <td>{{$tarefa->dhCriacao}}</td>
-                        <td>{{$tarefa->ultimaAlteracao}}</td>
+                        <td>{{\Carbon\Carbon::parse($tarefa->dhCriacao)->format('d/m/Y H:i:s')}}</td>
+                        <td>{{\Carbon\Carbon::parse($tarefa->ultimaAlteracao)->format('d/m/Y H:i:s')}}</td>
                         <td>{{$tarefa->nomeUsuario}}</td>
                         <td>{{$tarefa->importancia}}</td>
                         <td>{{$tarefa->xStatus}}</td>

@@ -47,6 +47,7 @@ class TarefaController extends Controller
     public function update(Request $request, string $idProjeto, string $idTarefa)
     {
         try {
+            $dateNow = Carbon::now();
             $data = $request->only(['titulo', 'nomeUsuario', 'descricaoTarefa', 'importancia', 'xStatus']);
             DB::table('Tarefas')->where([['idProjeto', '=', $idProjeto], ['idTarefa', '=', $idTarefa]])
                 ->update([
@@ -55,6 +56,7 @@ class TarefaController extends Controller
                     'descricaoTarefa' => $data['descricaoTarefa'],
                     'importancia' => $data['importancia'],
                     'xStatus' => $data['xStatus'],
+                    'ultimaAlteracao' => $dateNow,
                 ]);
             Projeto::find($idProjeto);
             DB::table('Tarefas')->where('idProjeto', '=', $idProjeto)->get();
