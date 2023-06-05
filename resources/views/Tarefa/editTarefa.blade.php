@@ -32,7 +32,7 @@
                 <h1>Editar Tarefa</h1>
             </div>
         </div>
-        <form method="post" action="">
+        <form method="post" action="{{route('tarefa.update', [$tarefa->idProjeto, $tarefa->idTarefa])}}">
             @csrf
             @method('put')
             <div class="row">
@@ -115,7 +115,7 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <button type='submit' class='btn btn-success btn-sm my-3'>Adicionar Projeto</button>
+                    <button type='submit' class='btn btn-success btn-sm my-3'>Editar Tarefa</button>
                 </div>
             </div>
         </form>

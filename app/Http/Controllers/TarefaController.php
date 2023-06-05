@@ -16,6 +16,20 @@ class TarefaController extends Controller
         return view('Tarefa.addTarefa', ['projetos' => $projetos]);
     }
 
+    // public function pesquisaTarefa(Request $request){
+    //     dd($request->get('titulo'));
+    //     if(!empty($request->titulo))
+    //     {
+    //         $search = DB::table('Tarefas')->where('titulo' , $request->get('titulo'))->get();
+    //         return view('Tarefa.indexTarefa', ['tarefa' => $search]);
+    //     }
+    //     elseif(empty($request->titulo))
+    //     {
+    //         $tarefas = Tarefa::all();
+    //         return view('Tarefa.indexTarefa', ['tarefas' => $tarefas]);
+    //     }
+    // }
+
     public function store(Request $request, string $idProjeto)
     {
         try {
@@ -40,18 +54,37 @@ class TarefaController extends Controller
 
     public function edit(string $id, string $idTarefa)
     {
-        // $projeto = Projeto::find($id);
-        $tarefa = DB::table('Tarefas')->where([['idProjeto', '=', $id], ['idTarefa', '=' , $idTarefa]])->first();
+        $tarefa = DB::table('Tarefas')->where([['idProjeto', '=', $id], ['idTarefa', '=', $idTarefa]])->first();
         return view('Tarefa.editTarefa', ['tarefa' => $tarefa]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $idProjeto, string $idTarefa)
     {
-        dd($id);
+        try {
+            $data = $request->only(['titulo', 'nomeUsuario', 'descricaoTarefa', 'importancia', 'xStatus']);
+            DB::table('Tarefas')->where([['idProjeto', '=', $idProjeto], ['idTarefa', '=', $idTarefa]])
+                ->update([
+                    'titulo' => $data['titulo'],
+                    'nomeUsuario' => $data['nomeUsuario'],
+                    'descricaoTarefa' => $data['descricaoTarefa'],
+                    'importancia' => $data['importancia'],
+                    'xStatus' => $data['xStatus'],
+                ]);
+            Projeto::find($idProjeto);
+            DB::table('Tarefas')->where('idProjeto', '=', $idProjeto)->get();
+            return redirect()->route('tarefa.show', $idProjeto)->with('success', 'Tarefa alterada com sucesso!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Erro ao alterar Tarefa!');
+        }
     }
 
-    public function destroy(string $idTarefa)
+    public function destroy(string $id)
     {
-        //
+        try {
+            DB::table('Tarefas')->where('idTarefa', $id)->delete();
+            return redirect()->back()->with('toast_success', 'Tarefa excluída com sucesso!');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('toast_error', 'Não foi possível deletar essa tarefa!');
+        }
     }
 }

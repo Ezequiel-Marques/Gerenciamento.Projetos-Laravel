@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <strong><label class='mb-0 mt-3'>Nome do Usuário:</label> <br /></strong>
-                    <input type="link" class='form-control' name='nomeUsuario'></input>
+                    <input type="link" class='form-control' name='nomeUsuario' required></input>
                 </div>
             </div>
             <div class="row">
