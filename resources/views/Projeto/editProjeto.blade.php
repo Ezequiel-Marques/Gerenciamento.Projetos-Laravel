@@ -40,27 +40,21 @@
             @csrf
             @method('put')
             <div class="row">
-                <div class="col-md-3 col-sm-12">
-                    <strong><label class='mt-2'>Código do Projeto:</label> <br /></strong>
-                    <input type="number" class='form-control' name='id' value="{{$projetos->id}}" required readOnly></input>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-12 col-lg-4">
                     <strong><label class='mt-2'>Nome do Projeto:</label> <br /></strong>
                     <input type="text" class='form-control' name='nomeProjeto' value="{{$projetos->nomeProjeto}}" required></input>
                 </div>
             </div>
-            <div className="row">
-                <div class="col-md-4 col-sm-12">
+            <div class="row">
+                <div class="col-12 col-lg-4">
                     <strong><label class='mb-0 mt-3'>Link do Projeto: (GitHub, GitLab, ...)</label> <br /></strong>
-                    <input type="text" class='form-control' name='linkProjeto' value="{{$projetos->linkProjeto}}"></input>
+                    <input type="link" class='form-control' name='linkProjeto' value="{{$projetos->linkProjeto}}" required></input>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 col-sm-10">
+                <div class="col-12 col-lg-5 d-flex flex-column">
                     <label htmlFor="" class='mb-0 mt-3'><strong>Descrição do Projeto:</strong></label>
-                    <textarea type="text" style="resize: none; height: 110px;" class="form-control" name='descricaoProjeto'>{{$projetos->descricaoProjeto}}</textarea>
+                    <textarea style="resize: none; height: 110px" class="form-control" maxlength="250" name='descricaoProjeto'>{{$projetos->descricaoProjeto}}</textarea>
                 </div>
             </div>
             <div class="row">

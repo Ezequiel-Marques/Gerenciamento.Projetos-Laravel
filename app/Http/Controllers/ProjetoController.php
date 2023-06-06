@@ -20,13 +20,10 @@ class ProjetoController extends Controller
 
     public function pesquisaProjeto(Request $request)
     {
-        if(!empty($request->nomeProjeto))
-        {
-            $search = Projeto::where('nomeProjeto' , $request->get('nomeProjeto'))->get();
+        if (!empty($request->nomeProjeto)) {
+            $search = Projeto::where('nomeProjeto', $request->get('nomeProjeto'))->get();
             return view('Projeto.indexProjeto', ['projetos' => $search]);
-        }
-        elseif(empty($request->nomeProjeto))
-        {
+        } elseif (empty($request->nomeProjeto)) {
             $projetos = Projeto::all();
             return view('Projeto.indexProjeto', ['projetos' => $projetos]);
         }
@@ -53,12 +50,12 @@ class ProjetoController extends Controller
         } catch (\Throwable $th) {
             return redirect('/')->with('error', 'Erro ao criar projeto!');
         }
-}
+    }
 
     public function showTarefa(string $id)
     {
         $projetos = Projeto::find($id);
-        $tarefas = DB::table('Tarefas')->where('idProjeto', '=' , $id)->get();
+        $tarefas = DB::table('Tarefas')->where('idProjeto', '=', $id)->get();
         return view('Tarefa.indexTarefa', ['tarefas' => $tarefas, 'projetos' => $projetos]);
     }
 

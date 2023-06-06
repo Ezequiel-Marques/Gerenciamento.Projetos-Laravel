@@ -39,7 +39,7 @@
     <style>
         * {
             font-family: Comfortaa;
-        }   
+        }
     </style>
 </head>
 
@@ -67,7 +67,9 @@
                 <button class="btn btn-sm btn-close" onclick=closeDescription()></button>
             </div>
             <h3 class="d-flex justify-content-center mb-3"><strong>Descrição do Projeto:</strong></h3>
-            <strong><div id="modal-body" class="d-flex justify-content-center"></div></strong>
+            <strong>
+                <div id="modal-body" class="d-flex justify-content-center"></div>
+            </strong>
         </dialog>
 
         <div class="table-responsive">

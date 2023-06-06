@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-12 col-lg-5 d-flex flex-column">
                     <label htmlFor="" class='mb-0 mt-3'><strong>Descrição do Projeto:</strong></label>
-                    <textarea style="resize: none; height: 130px" class="form-control" maxlength="250" name='descricaoProjeto'></textarea>
+                    <textarea style="resize: none; height: 110px" class="form-control" maxlength="250" name='descricaoProjeto'></textarea>
                 </div>
             </div>
             <div class="row">
@@ -91,7 +91,6 @@
             </div>
         </form>
     </div>
-    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -40,16 +40,6 @@
             @csrf
             @method('put')
             <div class="row">
-                <div class="col-md-3 col-sm-12">
-                    <strong><label class='mt-2'>Código do Projeto:</label> <br /></strong>
-                    <input type="number" class='form-control' name='idProjeto' value="{{$tarefa->idProjeto}}" required readOnly></input>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                    <strong><label class='mt-2'>Código da Tarefa:</label> <br /></strong>
-                    <input type="number" class='form-control' name='idTarefa' value="{{$tarefa->idTarefa}}" required readOnly></input>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-12 col-lg-4">
                     <strong><label class='mt-2'>Nome da Tarefa:</label> <br /></strong>
                     <input type="text" class='form-control' name='titulo' value="{{$tarefa->titulo}}" required></input>
@@ -58,13 +48,13 @@
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <strong><label class='mb-0 mt-3'>Nome do Usuário:</label> <br /></strong>
-                    <input type="link" class='form-control' name='nomeUsuario' value="{{$tarefa->nomeUsuario}}"></input>
+                    <input type="link" class='form-control' name='nomeUsuario' value="{{$tarefa->nomeUsuario}}" required></input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-5 d-flex flex-column">
                     <label htmlFor="" class='mb-0 mt-3'><strong>Descrição da Tarefa:</strong></label>
-                    <textarea style="resize: none; height: 130px" class="form-control" maxlength="250" name='descricaoTarefa'>{{$tarefa->descricaoTarefa}}</textarea>
+                    <textarea style="resize: none; height: 90px" class="form-control" maxlength="250" name='descricaoTarefa'>{{$tarefa->descricaoTarefa}}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -73,19 +63,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-1">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id='f1' name="importancia" value="Baixa" {{$tarefa->importancia === "Baixa" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f1">Baixa</label>
                     </div>
                 </div>
-                <div class="col-12 col-lg-1">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id='f2' name="importancia" value="Normal" {{$tarefa->importancia === "Normal" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f2">Normal</label>
                     </div>
                 </div>
-                <div class="col-12 col-lg-1">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id='f3' name="importancia" value="Urgente" {{$tarefa->importancia === "Urgente" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f3">Urgente</label>
@@ -98,19 +88,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="f4" name="xStatus" value="A iniciar" {{$tarefa->xStatus === "A iniciar" ? 'checked' : ''}} required></input>
+                        <input class="form-check-input offset-md-1" type="radio" id="f4" name="xStatus" value="A iniciar" {{$tarefa->xStatus === "A iniciar" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f4">A iniciar</label>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="f5" name="xStatus" value="Em andamento" {{$tarefa->xStatus === "Em andamento" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f5">Em andamento</label>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 col-lg-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="f6" name="xStatus" value="Finalizado" {{$tarefa->xStatus === "Finalizado" ? 'checked' : ''}} required></input>
                         <label class="form-check-label" htmlFor="f6">Finalizado</label>
