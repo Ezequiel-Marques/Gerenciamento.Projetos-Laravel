@@ -40,13 +40,18 @@ class ProjetoController extends Controller
             $dateNow = Carbon::now();
             $projeto = new Projeto();
             $data = $request->only(['nomeProjeto', 'linkProjeto', 'descricaoProjeto', 'xStatus']);
-            $projeto->setAttribute('nomeProjeto', $data['nomeProjeto']);
-            $projeto->setAttribute('linkProjeto', $data['linkProjeto']);
-            $projeto->setAttribute('descricaoProjeto', $data['descricaoProjeto']);
-            $projeto->setAttribute('dhCriacao', $dateNow);
-            $projeto->setAttribute('xStatus', $data['xStatus']);
-            $projeto->save();
-            return redirect('/')->with('success', 'Projeto criado com sucesso!');
+            $verifynameprojeto = Projeto::where('nomeProjeto', $request->nomeProjeto)->first();
+            if ($verifynameprojeto === null) {
+                $projeto->setAttribute('nomeProjeto', $data['nomeProjeto']);
+                $projeto->setAttribute('linkProjeto', $data['linkProjeto']);
+                $projeto->setAttribute('descricaoProjeto', $data['descricaoProjeto']);
+                $projeto->setAttribute('dhCriacao', $dateNow);
+                $projeto->setAttribute('xStatus', $data['xStatus']);
+                $projeto->save();
+                return redirect('/')->with('success', 'Projeto criado com sucesso!');
+            } else {
+                return redirect('/')->with('error', 'Projeto já existente!');
+            }
         } catch (\Throwable $th) {
             return redirect('/')->with('error', 'Erro ao criar projeto!');
         }

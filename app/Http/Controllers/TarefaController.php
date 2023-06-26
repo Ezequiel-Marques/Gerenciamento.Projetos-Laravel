@@ -23,16 +23,22 @@ class TarefaController extends Controller
             $altDate = Carbon::now();
             $tarefa = new Tarefa();
             $data = $request->only(['titulo', 'nomeUsuario', 'descricaoTarefa', 'importancia', 'xStatus']);
-            $tarefa->setAttribute('idProjeto', $idProjeto);
-            $tarefa->setAttribute('titulo', $data['titulo']);
-            $tarefa->setAttribute('nomeUsuario', $data['nomeUsuario']);
-            $tarefa->setAttribute('descricaoTarefa', $data['descricaoTarefa']);
-            $tarefa->setAttribute('importancia', $data['importancia']);
-            $tarefa->setAttribute('xStatus', $data['xStatus']);
-            $tarefa->setAttribute('dhCriacao', $date);
-            $tarefa->setAttribute('ultimaAlteracao', $altDate);
-            $tarefa->save();
-            return redirect()->route('tarefa.show', $idProjeto)->with('success', 'Tarefa criada com sucesso!');
+            $verifynametarefa = Tarefa::where('titulo', $request->titulo)->first();
+            if ($verifynametarefa === null) {
+                $tarefa->setAttribute('idProjeto', $idProjeto);
+                $tarefa->setAttribute('titulo', $data['titulo']);
+                $tarefa->setAttribute('nomeUsuario', $data['nomeUsuario']);
+                $tarefa->setAttribute('descricaoTarefa', $data['descricaoTarefa']);
+                $tarefa->setAttribute('importancia', $data['importancia']);
+                $tarefa->setAttribute('xStatus', $data['xStatus']);
+                $tarefa->setAttribute('dhCriacao', $date);
+                $tarefa->setAttribute('ultimaAlteracao', $altDate);
+                $tarefa->save();
+                return redirect()->route('tarefa.show', $idProjeto)->with('success', 'Tarefa criada com sucesso!');
+            } else {
+                return redirect()->route('tarefa.show', $idProjeto)->with('error', 'Tarefa já existente!');
+            }
+
         } catch (\Throwable $th) {
             return redirect()->route('tarefa.show', $idProjeto)->with('error', 'Erro ao criar tarefa!');
         }
